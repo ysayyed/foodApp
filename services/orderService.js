@@ -13,10 +13,12 @@ class OrderService {
 				try {
 					await recipes.forEach(async (element) => {
 						await order.addRecipes(element.recipeId, { through: { Qty: element.recipeQty } })
+						console.log(element)
 					})
 
 					await modifiers.forEach(async (element) => {
 						await order.addModifiers(element.modifierId, { through: { recipeId: element.recipeId, Qty: element.modifierQty } })
+						console.log(element)
 					})
 				}
 				catch (error) {
@@ -35,22 +37,23 @@ class OrderService {
 	async findall() {
 		try {
 			const orders = await Order.findAll({
+				where:{},
 				attributes: ['id', 'amt'],
-				include: {
+				include: [{
 					model: Recipe,
 					attributes: ['id', 'name'],
+					required: true,
 					through: {
 						attributes: ['Qty']
-					},
-					include: {
-						model: Modifier,
-						through: {
-							attributes: ['Qty']
-						}
 					}
-
-
-				}
+				},
+				{
+					model: Modifier,
+					required: false,
+					through: {
+						attributes: ['Qty']
+					}
+				}]
 			})
 			return orders
 		}
@@ -64,21 +67,21 @@ class OrderService {
 			const order = await Order.findOne(
 				{
 					where: { id: id },
-					include: {
+					include: [{
 						model: Recipe,
 						attributes: ['id', 'name'],
+						required: true,
 						through: {
 							attributes: ['Qty']
-						},
-						include: {
-							model: Modifier,
-							through: {
-								attributes: ['Qty']
-							}
 						}
-
-
-					}
+					},
+					{
+						model: Modifier,
+						required: false,
+						through: {
+							attributes: ['Qty']
+						}
+					}]
 				}
 			)
 			if (order !== null) {
