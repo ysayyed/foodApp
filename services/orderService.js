@@ -49,10 +49,10 @@ class OrderService {
 				},
 				{
 					model: Modifier,
-					required: false,
+					required: true,
 					through: {
-						attributes: ['Qty']
-					}
+						attributes: ['Qty' , 'recipeId']
+					}	
 				}]
 			})
 			return orders
@@ -77,10 +77,10 @@ class OrderService {
 					},
 					{
 						model: Modifier,
-						required: false,
+						required: true,
 						through: {
-							attributes: ['Qty']
-						}
+							attributes: ['Qty' , 'recipeId']
+						}	
 					}]
 				}
 			)

@@ -1,5 +1,4 @@
 const { Order, Modifier } = require('../models/schemas')
-const { QueryTypes } = require('sequelize')
 
 const Recipe = require('../models/schemas').Recipe
 
@@ -42,10 +41,14 @@ class RecipeService {
 				{
 					where: { id: id },
 					attributes: ['id', 'name', 'ingredients'],
-					include: {
+					include: [{
 						model: Order,
 						attributes: []
-					}
+					},
+					{
+						model: Modifier,
+						attributes: []
+					}]
 				}
 			)
 			if (recipe !== null) {
