@@ -8,15 +8,15 @@ A general Food App built with:
 
 After cloning don't forget to run:
 
-[npm i]
+npm i
 
 Note:
 Kindly create a .env file in the current directory and save the following variables in it:
-DB_DIALECT = mysql
-DB_NAME = food_app
-DB_HOST = localhost
-DB_USER = [YOUR_USERNAME]
-DB_PASSWORD = [YOUR_PASSWORD]
-PORT = 3000
-HOST = 'localhost'
+1. DB_DIALECT = mysql
+2. DB_NAME = food_app
+3. DB_HOST = localhost
+4. DB_USER = [YOUR_USERNAME]
+5. DB_PASSWORD = [YOUR_PASSWORD]
+6. PORT = 3000
+7. HOST = 'localhost'
 
